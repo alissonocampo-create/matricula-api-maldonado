@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, Query, status
 
 from app.database import conexion_lectura, transaccion
 from app.helpers import filas_a_lista, obtener_o_404
-from app.schemas import MatriculaEntrada, MatriculaRespuesta, MensajeRespuesta
+from app.esquemas import MatriculaEntrada, MatriculaRespuesta, MensajeRespuesta
 from app.services.matricula_service import validar_nueva_matricula
 
 
@@ -136,4 +136,3 @@ def eliminar_matricula(matricula_id: int):
         obtener_o_404(conexion, "matriculas", matricula_id, "Matrícula")
         conexion.execute("DELETE FROM matriculas WHERE id = ?", (matricula_id,))
     return {"mensaje": "Matrícula y su calificación fueron eliminadas"}
-

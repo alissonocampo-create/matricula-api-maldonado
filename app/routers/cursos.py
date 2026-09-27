@@ -1,10 +1,12 @@
+"""CRUD de cursos, llamados asignaturas en esta base de datos."""
+
 import sqlite3
 
 from fastapi import APIRouter, HTTPException, Query, status
 
 from app.database import conexion_lectura, transaccion
 from app.helpers import filas_a_lista, obtener_o_404
-from app.schemas import AsignaturaEntrada, AsignaturaRespuesta, MensajeRespuesta
+from app.esquemas import AsignaturaEntrada, AsignaturaRespuesta, MensajeRespuesta
 
 
 router = APIRouter(prefix="/asignaturas", tags=["Asignaturas"])
@@ -167,4 +169,3 @@ def eliminar_asignatura(asignatura_id: int):
         raise HTTPException(
             409, "No se puede eliminar: la asignatura tiene secciones"
         ) from error
-

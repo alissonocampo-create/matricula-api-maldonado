@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 
 from app.database import conexion_lectura
 from app.seguridad import hash_clave
-from app.schemas import UsuarioLogin, UsuarioRespuesta
+from app.esquemas import UsuarioLogin, UsuarioRespuesta
 
 
 router = APIRouter(prefix="/auth", tags=["Autenticación"])

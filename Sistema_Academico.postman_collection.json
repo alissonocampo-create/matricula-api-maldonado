@@ -20,6 +20,27 @@
   ],
   "item": [
     {
+      "name": "Reto - Matriculas de un estudiante",
+      "item": [
+        {
+          "name": "Cursos de Ana (ruta del enunciado)",
+          "request": {"method": "GET", "url": "{{base_url}}/estudiantes/1/matriculas"}
+        },
+        {
+          "name": "Cursos de Ana (API v1)",
+          "request": {"method": "GET", "url": "{{api}}/estudiantes/1/matriculas"}
+        },
+        {
+          "name": "Estudiante sin matriculas - 200",
+          "request": {"method": "GET", "url": "{{api}}/estudiantes/5/matriculas"}
+        },
+        {
+          "name": "Estudiante inexistente - 404",
+          "request": {"method": "GET", "url": "{{api}}/estudiantes/99999/matriculas"}
+        }
+      ]
+    },
+    {
       "name": "01 - Inicio y dashboard",
       "item": [
         {

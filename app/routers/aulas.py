@@ -4,7 +4,7 @@ from fastapi import APIRouter, HTTPException, status
 
 from app.database import conexion_lectura, transaccion
 from app.helpers import filas_a_lista, obtener_o_404
-from app.schemas import AulaEntrada, AulaRespuesta, MensajeRespuesta
+from app.esquemas import AulaEntrada, AulaRespuesta, MensajeRespuesta
 
 
 router = APIRouter(prefix="/aulas", tags=["Aulas"])
@@ -81,4 +81,3 @@ def eliminar_aula(aula_id: int):
         # ON DELETE SET NULL permite conservar la sección aunque desaparezca el aula.
         conexion.execute("DELETE FROM aulas WHERE id = ?", (aula_id,))
     return {"mensaje": "Aula eliminada; sus secciones quedaron sin aula asignada"}
-

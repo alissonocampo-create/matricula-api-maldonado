@@ -159,7 +159,7 @@ Para explicar una matrícula, recorra estos archivos en orden:
 
 1. `app/main.py`: registra el router dentro de la aplicación.
 2. `app/routers/matriculas.py`: recibe el JSON y define el endpoint.
-3. `app/schemas.py`: valida los tipos e identificadores.
+3. `app/esquemas.py`: valida los tipos e identificadores.
 4. `app/services/matricula_service.py`: aplica las reglas de negocio.
 5. `app/database.py`: abre la conexión, crea las tablas y controla transacciones.
 6. SQLite devuelve filas y el router construye la respuesta JSON.
@@ -196,4 +196,3 @@ La API ya permite peticiones desde:
 
 Estas son las direcciones habituales de Vite. Así, en la siguiente etapa se
 puede crear un frontend en Vue o React sin cambiar el backend.
-

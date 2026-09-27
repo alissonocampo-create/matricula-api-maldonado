@@ -4,7 +4,7 @@ from fastapi import APIRouter, HTTPException, status
 
 from app.database import conexion_lectura, transaccion
 from app.helpers import obtener_o_404
-from app.schemas import MensajeRespuesta, PeriodoEntrada, PeriodoRespuesta
+from app.esquemas import MensajeRespuesta, PeriodoEntrada, PeriodoRespuesta
 
 
 router = APIRouter(prefix="/periodos", tags=["Períodos académicos"])
@@ -108,4 +108,3 @@ def eliminar_periodo(periodo_id: int):
         raise HTTPException(
             409, "No se puede eliminar: el período tiene secciones"
         ) from error
-

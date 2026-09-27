@@ -4,7 +4,7 @@ from fastapi import APIRouter, HTTPException, Query, status
 
 from app.database import conexion_lectura, transaccion
 from app.helpers import filas_a_lista, obtener_o_404
-from app.schemas import MensajeRespuesta, SeccionEntrada, SeccionRespuesta
+from app.esquemas import MensajeRespuesta, SeccionEntrada, SeccionRespuesta
 from app.services.horarios import validar_choques_seccion
 
 
@@ -230,4 +230,3 @@ def eliminar_seccion(seccion_id: int):
         raise HTTPException(
             409, "No se puede eliminar: la sección tiene estudiantes matriculados"
         ) from error
-

@@ -4,7 +4,7 @@ from fastapi import APIRouter, HTTPException, Query, status
 
 from app.database import conexion_lectura, transaccion
 from app.helpers import filas_a_lista, obtener_o_404
-from app.schemas import DocenteEntrada, DocenteRespuesta, MensajeRespuesta
+from app.esquemas import DocenteEntrada, DocenteRespuesta, MensajeRespuesta
 
 
 router = APIRouter(prefix="/docentes", tags=["Docentes"])
@@ -120,4 +120,3 @@ def eliminar_docente(docente_id: int):
         raise HTTPException(
             409, "No se puede eliminar: el docente tiene secciones asignadas"
         ) from error
-

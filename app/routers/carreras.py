@@ -4,7 +4,7 @@ from fastapi import APIRouter, HTTPException, Query, status
 
 from app.database import conexion_lectura, transaccion
 from app.helpers import filas_a_lista, obtener_o_404
-from app.schemas import CarreraEntrada, CarreraRespuesta, MensajeRespuesta
+from app.esquemas import CarreraEntrada, CarreraRespuesta, MensajeRespuesta
 
 
 router = APIRouter(prefix="/carreras", tags=["Carreras"])
@@ -98,4 +98,3 @@ def eliminar_carrera(carrera_id: int):
         raise HTTPException(
             409, "No se puede eliminar: la carrera tiene estudiantes o asignaturas"
         ) from error
-

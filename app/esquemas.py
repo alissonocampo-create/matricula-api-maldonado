@@ -1,3 +1,5 @@
+"""Modelos de entrada y respuesta de la API."""
+
 from datetime import date
 from typing import Literal
 
@@ -185,4 +187,3 @@ class CalificacionRespuesta(CalificacionEntrada):
     matricula_id: int
     nota_final: float
     resultado: Literal["APROBADA", "REPROBADA"]
-

@@ -4,7 +4,8 @@ from fastapi import APIRouter, HTTPException, Query, status
 
 from app.database import conexion_lectura, transaccion
 from app.helpers import filas_a_lista, obtener_o_404
-from app.schemas import EstudianteEntrada, EstudianteRespuesta, MensajeRespuesta
+from app.esquemas import EstudianteEntrada, EstudianteRespuesta, MensajeRespuesta, MatriculaRespuesta
+from app.routers.matriculas import CONSULTA_BASE as CONSULTA_MATRICULAS
 
 
 router = APIRouter(prefix="/estudiantes", tags=["Estudiantes"])
@@ -71,6 +72,29 @@ def obtener_estudiante(estudiante_id: int):
     if fila is None:
         raise HTTPException(404, "Estudiante no encontrado")
     return dict(fila)
+
+
+@router.get("/{estudiante_id}/matriculas", response_model=list[MatriculaRespuesta])
+def matriculas_estudiante(estudiante_id: int):
+    """Lista el historial de cursos, incluyendo el estado de cada matricula."""
+    with conexion_lectura() as conexion:
+        obtener_o_404(conexion, "estudiantes", estudiante_id, "Estudiante")
+        filas = conexion.execute(
+            f"{CONSULTA_MATRICULAS} WHERE m.estudiante_id = ? "
+            "ORDER BY p.anio DESC, p.numero DESC, a.codigo, m.id",
+            (estudiante_id,),
+        ).fetchall()
+    return filas_a_lista(filas)
+
+
+# Alias literal del enunciado, ademas de la ruta con prefijo /api/v1.
+reto_router = APIRouter(tags=["Estudiantes"])
+reto_router.add_api_route(
+    "/estudiantes/{estudiante_id}/matriculas",
+    matriculas_estudiante,
+    methods=["GET"],
+    response_model=list[MatriculaRespuesta],
+)
 
 
 @router.post(
@@ -154,4 +178,3 @@ def eliminar_estudiante(estudiante_id: int):
             "No se puede eliminar: el estudiante tiene historial de matrículas. "
             "Puede cambiar su estado a INACTIVO.",
         ) from error
-

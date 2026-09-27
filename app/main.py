@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.database import inicializar_base_datos
 from app.routers import (
-    asignaturas,
+    cursos,
     auth,
     aulas,
     calificaciones,
@@ -51,7 +51,7 @@ app.include_router(auth.router, prefix=PREFIJO)
 app.include_router(carreras.router, prefix=PREFIJO)
 app.include_router(estudiantes.router, prefix=PREFIJO)
 app.include_router(docentes.router, prefix=PREFIJO)
-app.include_router(asignaturas.router, prefix=PREFIJO)
+app.include_router(cursos.router, prefix=PREFIJO)
 app.include_router(periodos.router, prefix=PREFIJO)
 app.include_router(aulas.router, prefix=PREFIJO)
 app.include_router(secciones.router, prefix=PREFIJO)
@@ -60,6 +60,8 @@ app.include_router(calificaciones.router, prefix=PREFIJO)
 app.include_router(reportes.router, prefix=PREFIJO)
 app.include_router(dashboard.router, prefix=PREFIJO)
 app.include_router(paginas.router)
+
+app.include_router(estudiantes.reto_router)
 
 
 paginas.montar_frontend(app)

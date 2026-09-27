@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, Query, status
 
 from app.database import conexion_lectura, transaccion
 from app.helpers import filas_a_lista, obtener_o_404
-from app.schemas import (
+from app.esquemas import (
     CalificacionEntrada,
     CalificacionRespuesta,
     MensajeRespuesta,
@@ -136,4 +136,3 @@ def eliminar_calificacion(matricula_id: int):
             (matricula_id,),
         )
     return {"mensaje": "Calificación eliminada y matrícula reabierta"}
-
