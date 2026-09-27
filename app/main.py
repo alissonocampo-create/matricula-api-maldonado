@@ -1,9 +1,7 @@
 from contextlib import asynccontextmanager
-from pathlib import Path
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
 
 from app.database import inicializar_base_datos
 from app.routers import (
@@ -12,9 +10,11 @@ from app.routers import (
     aulas,
     calificaciones,
     carreras,
+    dashboard,
     docentes,
     estudiantes,
     matriculas,
+    paginas,
     periodos,
     reportes,
     secciones,
@@ -58,16 +58,8 @@ app.include_router(secciones.router, prefix=PREFIJO)
 app.include_router(matriculas.router, prefix=PREFIJO)
 app.include_router(calificaciones.router, prefix=PREFIJO)
 app.include_router(reportes.router, prefix=PREFIJO)
+app.include_router(dashboard.router, prefix=PREFIJO)
+app.include_router(paginas.router)
 
 
-@app.get("/salud", tags=["Inicio"])
-def comprobar_salud():
-    return {"estado": "OK"}
-
-
-# El frontend (login + dashboard) se sirve desde la carpeta "frontend/".
-# Se monta al final para que las rutas de la API definidas arriba siempre
-# tengan prioridad sobre los archivos estáticos.
-CARPETA_FRONTEND = Path(__file__).resolve().parent.parent / "frontend"
-app.mount("/", StaticFiles(directory=CARPETA_FRONTEND, html=True), name="frontend")
-
+paginas.montar_frontend(app)

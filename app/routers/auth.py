@@ -1,6 +1,7 @@
 from fastapi import APIRouter, HTTPException
 
-from app.database import conexion_lectura, hash_clave
+from app.database import conexion_lectura
+from app.seguridad import hash_clave
 from app.schemas import UsuarioLogin, UsuarioRespuesta
 
 

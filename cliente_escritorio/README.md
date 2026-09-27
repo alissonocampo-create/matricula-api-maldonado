@@ -52,7 +52,7 @@ interfaz gráfica.
 ## Nota sobre la contraseña
 
 La tabla `usuarios` guarda la contraseña con un hash SHA-256
-(`hash_clave` en `app/database.py`), no en texto plano. Es una
+(`hash_clave` en `app/seguridad.py`), no en texto plano. Es una
 simplificación con fines didácticos: en un sistema real se usaría una
 librería como **passlib** o **bcrypt**, que además agrega "sal" a cada
 contraseña. Es un buen tema para comentar en clase.

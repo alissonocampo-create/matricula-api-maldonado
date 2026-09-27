@@ -1,17 +1,9 @@
 from contextlib import contextmanager
 from pathlib import Path
-import hashlib
 import sqlite3
 
 
-def hash_clave(clave: str) -> str:
-    """Hash simple de la contraseña (fines didácticos).
-
-    En un sistema real se usaría una librería como passlib/bcrypt, que además
-    agrega 'sal' a cada contraseña. Aquí se mantiene sencillo para que el
-    estudiante pueda leer y explicar el código completo.
-    """
-    return hashlib.sha256(clave.encode("utf-8")).hexdigest()
+from app.seguridad import hash_clave
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
