@@ -67,9 +67,21 @@ SQLite** mientras la API está detenida.
 La carpeta `frontend/` contiene una página web (HTML + CSS + JavaScript, sin
 frameworks) que la propia API sirve en la raíz `/`. Al abrir
 `http://127.0.0.1:8000` en el navegador aparece una pantalla de login;
-al entrar muestra un dashboard con tarjetas de indicadores
-(`/api/v1/reportes/dashboard`) y una tabla de estudiantes con buscador
-(`/api/v1/estudiantes`).
+al entrar muestra un dashboard con indicadores y un menú en este orden:
+Inicio / Resumen, Carreras, Estudiantes, Docentes, Asignaturas, Períodos,
+Aulas, Secciones, Matrículas, Calificaciones y Reportes.
+
+Los catálogos incluyen búsqueda, paginación y formularios para crear y editar,
+con confirmación antes de eliminar. Las relaciones se seleccionan por nombre.
+Matrículas permite inscribir estudiantes y cancelar inscripciones. Calificaciones
+registra las tres notas parciales y muestra el promedio. Reportes permite consultar
+el historial de un estudiante, la lista de una sección y la carga de un docente.
+La interfaz usa fondo negro, texto turquesa y animaciones suaves que respetan
+la preferencia del sistema de reducir el movimiento.
+
+Los formularios utilizan los modelos publicados en `/openapi.json` y conservan
+las validaciones y reglas de la API. Los iconos Lucide se sirven localmente desde
+`frontend/vendor/`, con su licencia incluida; no requieren conexión externa.
 
 Usuarios de prueba (tabla `usuarios`, creada junto con los demás datos de
 demostración):
